@@ -14,14 +14,20 @@
 		A840B0DB188F1E6D00B65198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A840B0DA188F1E6D00B65198 /* main.m */; };
 		A840B0DF188F1E6D00B65198 /* JAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A840B0DE188F1E6D00B65198 /* JAppDelegate.m */; };
 		A840B0E2188F1E6D00B65198 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A840B0E0188F1E6D00B65198 /* Main.storyboard */; };
-		A840B0E5188F1E6D00B65198 /* JFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A840B0E4188F1E6D00B65198 /* JFirstViewController.m */; };
-		A840B0E8188F1E6D00B65198 /* JSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A840B0E7188F1E6D00B65198 /* JSecondViewController.m */; };
 		A840B0EA188F1E6D00B65198 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A840B0E9188F1E6D00B65198 /* Images.xcassets */; };
 		A840B0F1188F1E6D00B65198 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A840B0F0188F1E6D00B65198 /* XCTest.framework */; };
 		A840B0F2188F1E6D00B65198 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A840B0CE188F1E6D00B65198 /* Foundation.framework */; };
 		A840B0F3188F1E6D00B65198 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A840B0D2188F1E6D00B65198 /* UIKit.framework */; };
 		A840B0FB188F1E6D00B65198 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A840B0F9188F1E6D00B65198 /* InfoPlist.strings */; };
 		A840B0FD188F1E6D00B65198 /* JIRAiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A840B0FC188F1E6D00B65198 /* JIRAiOSTests.m */; };
+		A88D0963189058890012C99F /* JLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A88D0962189058890012C99F /* JLoginViewController.m */; };
+		A88D096618907A280012C99F /* JEncodeStringBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A88D096518907A280012C99F /* JEncodeStringBase64.m */; };
+		A8AECD7D18908BA400B86EBD /* JProjectListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD7C18908BA400B86EBD /* JProjectListController.m */; };
+		A8AECD801890942E00B86EBD /* JProject.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD7F1890942E00B86EBD /* JProject.m */; };
+		A8AECD8918918FA100B86EBD /* JIssueTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD8818918FA100B86EBD /* JIssueTabBarController.m */; };
+		A8AECD8C18918FD700B86EBD /* JIssueListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD8B18918FD700B86EBD /* JIssueListController.m */; };
+		A8AECD931891A99000B86EBD /* JIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD921891A99000B86EBD /* JIssue.m */; };
+		A8AECD961892F57400B86EBD /* JCreateIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD951892F57400B86EBD /* JCreateIssueViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,16 +52,28 @@
 		A840B0DD188F1E6D00B65198 /* JAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JAppDelegate.h; sourceTree = "<group>"; };
 		A840B0DE188F1E6D00B65198 /* JAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JAppDelegate.m; sourceTree = "<group>"; };
 		A840B0E1188F1E6D00B65198 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A840B0E3188F1E6D00B65198 /* JFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JFirstViewController.h; sourceTree = "<group>"; };
-		A840B0E4188F1E6D00B65198 /* JFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JFirstViewController.m; sourceTree = "<group>"; };
-		A840B0E6188F1E6D00B65198 /* JSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSecondViewController.h; sourceTree = "<group>"; };
-		A840B0E7188F1E6D00B65198 /* JSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSecondViewController.m; sourceTree = "<group>"; };
 		A840B0E9188F1E6D00B65198 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A840B0EF188F1E6D00B65198 /* JIRAiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JIRAiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A840B0F0188F1E6D00B65198 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A840B0F8188F1E6D00B65198 /* JIRAiOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JIRAiOSTests-Info.plist"; sourceTree = "<group>"; };
 		A840B0FA188F1E6D00B65198 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A840B0FC188F1E6D00B65198 /* JIRAiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JIRAiOSTests.m; sourceTree = "<group>"; };
+		A88D0961189058890012C99F /* JLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLoginViewController.h; sourceTree = "<group>"; };
+		A88D0962189058890012C99F /* JLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLoginViewController.m; sourceTree = "<group>"; };
+		A88D096418907A280012C99F /* JEncodeStringBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEncodeStringBase64.h; sourceTree = "<group>"; };
+		A88D096518907A280012C99F /* JEncodeStringBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEncodeStringBase64.m; sourceTree = "<group>"; };
+		A8AECD7B18908BA400B86EBD /* JProjectListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JProjectListController.h; sourceTree = "<group>"; };
+		A8AECD7C18908BA400B86EBD /* JProjectListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JProjectListController.m; sourceTree = "<group>"; };
+		A8AECD7E1890942E00B86EBD /* JProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JProject.h; sourceTree = "<group>"; };
+		A8AECD7F1890942E00B86EBD /* JProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JProject.m; sourceTree = "<group>"; };
+		A8AECD8718918FA100B86EBD /* JIssueTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JIssueTabBarController.h; path = ../JIssueTabBarController.h; sourceTree = "<group>"; };
+		A8AECD8818918FA100B86EBD /* JIssueTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JIssueTabBarController.m; path = ../JIssueTabBarController.m; sourceTree = "<group>"; };
+		A8AECD8A18918FD700B86EBD /* JIssueListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JIssueListController.h; path = ../JIssueListController.h; sourceTree = "<group>"; };
+		A8AECD8B18918FD700B86EBD /* JIssueListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JIssueListController.m; path = ../JIssueListController.m; sourceTree = "<group>"; };
+		A8AECD911891A99000B86EBD /* JIssue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JIssue.h; sourceTree = "<group>"; };
+		A8AECD921891A99000B86EBD /* JIssue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JIssue.m; sourceTree = "<group>"; };
+		A8AECD941892F57400B86EBD /* JCreateIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JCreateIssueViewController.h; path = ../JCreateIssueViewController.h; sourceTree = "<group>"; };
+		A8AECD951892F57400B86EBD /* JCreateIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCreateIssueViewController.m; path = ../JCreateIssueViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,13 +133,20 @@
 		A840B0D4188F1E6D00B65198 /* JIRAiOS */ = {
 			isa = PBXGroup;
 			children = (
-				A840B0DD188F1E6D00B65198 /* JAppDelegate.h */,
-				A840B0DE188F1E6D00B65198 /* JAppDelegate.m */,
-				A840B0E0188F1E6D00B65198 /* Main.storyboard */,
-				A840B0E3188F1E6D00B65198 /* JFirstViewController.h */,
-				A840B0E4188F1E6D00B65198 /* JFirstViewController.m */,
-				A840B0E6188F1E6D00B65198 /* JSecondViewController.h */,
-				A840B0E7188F1E6D00B65198 /* JSecondViewController.m */,
+				A8AECD901891905000B86EBD /* Utilities */,
+				A8AECD8F1891903A00B86EBD /* AppDelegate */,
+				A8AECD8D18918FE900B86EBD /* Entities */,
+				A8AECD8E1891900700B86EBD /* Storyboard */,
+				A8AECD8A18918FD700B86EBD /* JIssueListController.h */,
+				A8AECD8B18918FD700B86EBD /* JIssueListController.m */,
+				A8AECD8718918FA100B86EBD /* JIssueTabBarController.h */,
+				A8AECD8818918FA100B86EBD /* JIssueTabBarController.m */,
+				A88D0961189058890012C99F /* JLoginViewController.h */,
+				A88D0962189058890012C99F /* JLoginViewController.m */,
+				A8AECD7B18908BA400B86EBD /* JProjectListController.h */,
+				A8AECD7C18908BA400B86EBD /* JProjectListController.m */,
+				A8AECD941892F57400B86EBD /* JCreateIssueViewController.h */,
+				A8AECD951892F57400B86EBD /* JCreateIssueViewController.m */,
 				A840B0E9188F1E6D00B65198 /* Images.xcassets */,
 				A840B0D5188F1E6D00B65198 /* Supporting Files */,
 			);
@@ -155,6 +180,43 @@
 				A840B0F9188F1E6D00B65198 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A8AECD8D18918FE900B86EBD /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A8AECD7E1890942E00B86EBD /* JProject.h */,
+				A8AECD7F1890942E00B86EBD /* JProject.m */,
+				A8AECD911891A99000B86EBD /* JIssue.h */,
+				A8AECD921891A99000B86EBD /* JIssue.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		A8AECD8E1891900700B86EBD /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A840B0E0188F1E6D00B65198 /* Main.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		A8AECD8F1891903A00B86EBD /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A840B0DD188F1E6D00B65198 /* JAppDelegate.h */,
+				A840B0DE188F1E6D00B65198 /* JAppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		A8AECD901891905000B86EBD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A88D096418907A280012C99F /* JEncodeStringBase64.h */,
+				A88D096518907A280012C99F /* JEncodeStringBase64.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,10 +317,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A840B0E5188F1E6D00B65198 /* JFirstViewController.m in Sources */,
+				A88D096618907A280012C99F /* JEncodeStringBase64.m in Sources */,
+				A8AECD801890942E00B86EBD /* JProject.m in Sources */,
+				A88D0963189058890012C99F /* JLoginViewController.m in Sources */,
+				A8AECD7D18908BA400B86EBD /* JProjectListController.m in Sources */,
 				A840B0DB188F1E6D00B65198 /* main.m in Sources */,
+				A8AECD931891A99000B86EBD /* JIssue.m in Sources */,
+				A8AECD8C18918FD700B86EBD /* JIssueListController.m in Sources */,
+				A8AECD961892F57400B86EBD /* JCreateIssueViewController.m in Sources */,
+				A8AECD8918918FA100B86EBD /* JIssueTabBarController.m in Sources */,
 				A840B0DF188F1E6D00B65198 /* JAppDelegate.m in Sources */,
-				A840B0E8188F1E6D00B65198 /* JSecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +535,7 @@
 				A840B102188F1E6D00B65198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A840B103188F1E6D00B65198 /* Build configuration list for PBXNativeTarget "JIRAiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +544,7 @@
 				A840B105188F1E6D00B65198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
