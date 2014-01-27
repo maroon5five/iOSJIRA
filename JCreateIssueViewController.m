@@ -15,30 +15,47 @@
 @implementation JCreateIssueViewController
 @synthesize authValue;
 
+- (id)initWithCoder:(NSCoder*)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self) {
+        [self populateArraysForPickers];
+        [self setUpPickers];
+        [self setUpDescriptionEditTextStyle];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self setUpDescriptionEditTextStyle];
-    [self setUpPickers];
-    [self populateArraysForPickers];
 }
 
 -(void)populateArraysForPickers
 {
-    //_priorityOptions = [NSArray alloc] initWithObjects:<#(id), ...#>, nil
+    _priorityOptions = [[NSArray alloc] initWithObjects:@"Unprioritized", @"Blocker", @"Critical", @"Major", @"Minor", @"Trivial", @"Enhancement", nil];
+    _issueTypeOptions = [[NSArray alloc] initWithObjects:@"Story", @"Task", @"Epic", @"Bug", @"Research task", @"Improvement", @"New Feature", nil];
+}
+
+- (IBAction)showPriorityPicker:(UIButton *)sender {
+    [self.view addSubview:_priorityPicker];
+}
+
+- (IBAction)showIssueTypePicker:(UIButton *)sender {
+    [self.view addSubview:_issueTypePicker];
 }
 
 -(void)setUpPickers
 {
     _issueTypePicker = [[UIPickerView alloc] init];
     CGSize pickerSize = [_issueTypePicker sizeThatFits:CGSizeZero];
-    _issueTypePicker.frame = CGRectMake(0.0, 250, pickerSize.width, 460);
+    _issueTypePicker.frame = CGRectMake(0.0, 250, pickerSize.width, 162);
     _issueTypePicker.backgroundColor = [UIColor whiteColor];
     _issueTypePicker.tag = ISSUE_TYPE_PICKER;
     [_issueTypePicker setDelegate:self];
     
     _priorityPicker = [[UIPickerView alloc] init];
-    _priorityPicker.frame = CGRectMake(0.0, 250, pickerSize.width, 460);
+    _priorityPicker.frame = CGRectMake(0.0, 250, pickerSize.width, 162);
     _priorityPicker.backgroundColor = [UIColor whiteColor];
     _priorityPicker.tag = PRIORITY_PICKER_VIEW;
     [_priorityPicker setDelegate:self];
@@ -59,22 +76,22 @@
 {
     int numberOfOptions = 0;
     if (pickerView.tag == PRIORITY_PICKER_VIEW) {
-        numberOfOptions = 6;
+        numberOfOptions = 7;
     } else if (pickerView.tag == ISSUE_TYPE_PICKER){
-        numberOfOptions = 4;
+        numberOfOptions = 7;
     }
     return numberOfOptions;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    int numberOfOptions = 0;
     if (pickerView.tag == PRIORITY_PICKER_VIEW) {
-        numberOfOptions = 6;
+        return _priorityOptions[row];
     } else if (pickerView.tag == ISSUE_TYPE_PICKER){
-        numberOfOptions = 4;
+        return _issueTypeOptions[row];
+    }else{
+        return nil;
     }
-    return nil;
 }
 
 - (void)setUpDescriptionEditTextStyle
@@ -91,6 +108,8 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:TRUE];
+    [_priorityPicker removeFromSuperview];
+    [_issueTypePicker removeFromSuperview];
 }
 
 

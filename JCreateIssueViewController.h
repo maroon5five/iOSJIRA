@@ -24,10 +24,12 @@ static const int ISSUE_TYPE_PICKER = 1;
 @property(nonatomic) UIPickerView *priorityPicker;
 @property(nonatomic) UIPickerView *issueTypePicker;
 @property(nonatomic) NSArray *priorityOptions;
-@property(nonatomic) NSArray *issueStatusOptions;
+@property(nonatomic) NSArray *issueTypeOptions;
 
 -(void)setUpPickers;
 -(void)setUpDescriptionEditTextStyle;
 -(void)populateArraysForPickers;
+- (IBAction)showPriorityPicker:(UIButton *)sender;
+- (IBAction)showIssueTypePicker:(UIButton *)sender;
 
 @end
