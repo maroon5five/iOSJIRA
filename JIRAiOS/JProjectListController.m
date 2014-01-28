@@ -88,6 +88,10 @@
         JIssueListController *issueListController = [issueTabBarController.viewControllers objectAtIndex:0];
         issueListController.authValue = authValue;
         issueListController.project = _selectedProject;
+        
+        JCreateIssueViewController *createIssueController = [issueTabBarController.viewControllers objectAtIndex:1];
+        createIssueController.authValue = authValue;
+        createIssueController.project = _selectedProject;
     }
 }
 

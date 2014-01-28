@@ -10,6 +10,7 @@
 #import "JProject.h"
 #import "JIssueTabBarController.h"
 #import "JIssueListController.h"
+#import "JCreateIssueViewController.h"
 
 @interface JProjectListController : UITableViewController
 @property(nonatomic) NSString *authValue;
