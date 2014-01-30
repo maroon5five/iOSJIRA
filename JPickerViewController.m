@@ -16,14 +16,31 @@
 
 @implementation JPickerViewController
 @synthesize pickerToDisplay;
+@synthesize callingController;
+@synthesize defaultPickerValue;
 
 -(void) viewDidLoad
 {
-    
     [_pickerView setDelegate:self];
     [_pickerView setDataSource:self];
     [self populateArraysForPickers];
     [_pickerView reloadAllComponents];
+    [self.pickerView selectRow:[self getRowOfDefaultValue] inComponent:0 animated:NO];
+}
+
+-(NSInteger)getRowOfDefaultValue
+{
+    NSInteger returnValue = 0;
+    if (pickerToDisplay == PRIORITY_PICKER_VIEW) {
+        returnValue = (NSInteger)[_priorityOptions indexOfObject:defaultPickerValue];
+    } else if(pickerToDisplay == ISSUE_TYPE_PICKER){
+        returnValue = (NSInteger)[_issueTypeOptions indexOfObject:defaultPickerValue];
+    }
+    if (returnValue < 7) {
+        return returnValue;
+    } else {
+        return 0;
+    }
 }
 
 -(void)populateArraysForPickers
@@ -62,20 +79,25 @@
     }
 }
 
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    currentRowSelected = row;
-}
-
 - (IBAction)doneWithPicker:(UIButton *)sender {
     UINavigationController *navigationController = (UINavigationController *)self.presentingViewController;
     NSArray *stackOfViewControllers = navigationController.viewControllers;
-    JIssueTabBarController *issueTabBarController = (JIssueTabBarController *)stackOfViewControllers[stackOfViewControllers.count - 1];
-    JCreateIssueViewController *presentingViewController = [issueTabBarController.viewControllers objectAtIndex:1];
-    if(pickerToDisplay == PRIORITY_PICKER_VIEW){
-        [presentingViewController.priorityButton setTitle:_priorityOptions[currentRowSelected] forState:UIControlStateNormal];
-    } else if(pickerToDisplay == ISSUE_TYPE_PICKER){
-        [presentingViewController.issueTypeButton setTitle:_issueTypeOptions[currentRowSelected] forState:UIControlStateNormal];
+    currentRowSelected = [_pickerView selectedRowInComponent:0];
+    if (callingController == CREATE_ISSUE) {
+        JIssueTabBarController *issueTabBarController = (JIssueTabBarController *)stackOfViewControllers[stackOfViewControllers.count - 1];
+        JCreateIssueViewController *presentingViewController = [issueTabBarController.viewControllers objectAtIndex:1];
+        if(pickerToDisplay == PRIORITY_PICKER_VIEW){
+            [presentingViewController.priorityButton setTitle:_priorityOptions[currentRowSelected] forState:UIControlStateNormal];
+        } else if(pickerToDisplay == ISSUE_TYPE_PICKER){
+            [presentingViewController.issueTypeButton setTitle:_issueTypeOptions[currentRowSelected] forState:UIControlStateNormal];
+        }
+    } else if (callingController == EDIT_ISSUE){
+        JEditIssueViewController *presentingViewController = (JEditIssueViewController *)stackOfViewControllers[stackOfViewControllers.count - 1];
+        if(pickerToDisplay == PRIORITY_PICKER_VIEW){
+            [presentingViewController.priorityButton setTitle:_priorityOptions[currentRowSelected] forState:UIControlStateNormal];
+        } else if(pickerToDisplay == ISSUE_TYPE_PICKER){
+            [presentingViewController.issueTypeButton setTitle:_issueTypeOptions[currentRowSelected] forState:UIControlStateNormal];
+        }
     }
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }

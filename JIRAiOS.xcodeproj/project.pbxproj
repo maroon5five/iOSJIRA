@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A80B85C6189705C7009C3381 /* JIssueDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80B85C5189705C7009C3381 /* JIssueDescriptionViewController.m */; };
+		A80B85C918981B13009C3381 /* JEditIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80B85C818981B13009C3381 /* JEditIssueViewController.m */; };
+		A80B85CC18986F50009C3381 /* JConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A80B85CB18986F50009C3381 /* JConstants.m */; };
+		A80B85CF1899864F009C3381 /* JStringFormatUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A80B85CE1899864F009C3381 /* JStringFormatUtility.m */; };
+		A80B85D81899D8C8009C3381 /* JMoveIssueControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80B85D71899D8C8009C3381 /* JMoveIssueControllerViewController.m */; };
 		A840B0CF188F1E6D00B65198 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A840B0CE188F1E6D00B65198 /* Foundation.framework */; };
 		A840B0D1188F1E6D00B65198 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A840B0D0188F1E6D00B65198 /* CoreGraphics.framework */; };
 		A840B0D3188F1E6D00B65198 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A840B0D2188F1E6D00B65198 /* UIKit.framework */; };
@@ -45,6 +49,14 @@
 /* Begin PBXFileReference section */
 		A80B85C4189705C7009C3381 /* JIssueDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JIssueDescriptionViewController.h; sourceTree = "<group>"; };
 		A80B85C5189705C7009C3381 /* JIssueDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JIssueDescriptionViewController.m; sourceTree = "<group>"; };
+		A80B85C718981B13009C3381 /* JEditIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEditIssueViewController.h; sourceTree = "<group>"; };
+		A80B85C818981B13009C3381 /* JEditIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEditIssueViewController.m; sourceTree = "<group>"; };
+		A80B85CA18986F50009C3381 /* JConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JConstants.h; sourceTree = "<group>"; };
+		A80B85CB18986F50009C3381 /* JConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JConstants.m; sourceTree = "<group>"; };
+		A80B85CD1899864F009C3381 /* JStringFormatUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JStringFormatUtility.h; sourceTree = "<group>"; };
+		A80B85CE1899864F009C3381 /* JStringFormatUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JStringFormatUtility.m; sourceTree = "<group>"; };
+		A80B85D61899D8C8009C3381 /* JMoveIssueControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMoveIssueControllerViewController.h; path = ../JMoveIssueControllerViewController.h; sourceTree = "<group>"; };
+		A80B85D71899D8C8009C3381 /* JMoveIssueControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMoveIssueControllerViewController.m; path = ../JMoveIssueControllerViewController.m; sourceTree = "<group>"; };
 		A840B0CB188F1E6D00B65198 /* JIRAiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JIRAiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A840B0CE188F1E6D00B65198 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A840B0D0188F1E6D00B65198 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -157,6 +169,10 @@
 				A8AECD981896DB4200B86EBD /* JPickerViewController.m */,
 				A80B85C4189705C7009C3381 /* JIssueDescriptionViewController.h */,
 				A80B85C5189705C7009C3381 /* JIssueDescriptionViewController.m */,
+				A80B85C718981B13009C3381 /* JEditIssueViewController.h */,
+				A80B85C818981B13009C3381 /* JEditIssueViewController.m */,
+				A80B85D61899D8C8009C3381 /* JMoveIssueControllerViewController.h */,
+				A80B85D71899D8C8009C3381 /* JMoveIssueControllerViewController.m */,
 				A840B0E9188F1E6D00B65198 /* Images.xcassets */,
 				A840B0D5188F1E6D00B65198 /* Supporting Files */,
 			);
@@ -223,8 +239,12 @@
 		A8AECD901891905000B86EBD /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A80B85CA18986F50009C3381 /* JConstants.h */,
+				A80B85CB18986F50009C3381 /* JConstants.m */,
 				A88D096418907A280012C99F /* JEncodeStringBase64.h */,
 				A88D096518907A280012C99F /* JEncodeStringBase64.m */,
+				A80B85CD1899864F009C3381 /* JStringFormatUtility.h */,
+				A80B85CE1899864F009C3381 /* JStringFormatUtility.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -332,6 +352,7 @@
 			files = (
 				A88D096618907A280012C99F /* JEncodeStringBase64.m in Sources */,
 				A8AECD801890942E00B86EBD /* JProject.m in Sources */,
+				A80B85CC18986F50009C3381 /* JConstants.m in Sources */,
 				A88D0963189058890012C99F /* JLoginViewController.m in Sources */,
 				A8AECD7D18908BA400B86EBD /* JProjectListController.m in Sources */,
 				A8AECD991896DB4200B86EBD /* JPickerViewController.m in Sources */,
@@ -341,6 +362,9 @@
 				A8AECD8C18918FD700B86EBD /* JIssueListController.m in Sources */,
 				A8AECD961892F57400B86EBD /* JCreateIssueViewController.m in Sources */,
 				A8AECD8918918FA100B86EBD /* JIssueTabBarController.m in Sources */,
+				A80B85D81899D8C8009C3381 /* JMoveIssueControllerViewController.m in Sources */,
+				A80B85C918981B13009C3381 /* JEditIssueViewController.m in Sources */,
+				A80B85CF1899864F009C3381 /* JStringFormatUtility.m in Sources */,
 				A840B0DF188F1E6D00B65198 /* JAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

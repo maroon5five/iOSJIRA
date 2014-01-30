@@ -16,6 +16,8 @@
     NSMutableArray *qualityAssuranceIssues;
     NSMutableArray *demoReadyIssues;
     NSMutableArray *doneDoneIssues;
+    
+    JIssue *selectedIssue;
 }
 
 @end
@@ -26,7 +28,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    _issues = nil;
     [self initializeArrays];
+    [self.tableView reloadData];
     [self getAllIssuesForProject];
 }
 
@@ -48,7 +57,11 @@
     issue.issueKey = [jsonIssue objectForKey:@"key"];
     NSDictionary *jsonIssueFields = [jsonIssue objectForKey:@"fields"];
     issue.issueTitle = [jsonIssueFields objectForKey:@"summary"];
-    issue.issueDescription = [jsonIssueFields objectForKey:@"description"];
+    if([jsonIssueFields objectForKey:@"description"] != [NSNull null]){
+        issue.issueDescription = [jsonIssueFields objectForKey:@"description"];
+    } else {
+        issue.issueDescription = @"";
+    }
     issue.issuePriority = [[jsonIssueFields objectForKey:@"priority"] objectForKey:@"name"];
     issue.issueCreator = [[jsonIssueFields objectForKey:@"creator"] objectForKey:@"displayName"];
     if([jsonIssueFields objectForKey:@"assignee"] != [NSNull null]){
@@ -87,7 +100,7 @@
 
 - (void)getAllIssuesForProject
 {
-    NSString *urlString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/search?jql=project=%@", _project.projectKey];
+    NSString *urlString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/search?jql=project=%@&maxResults=5000", _project.projectKey];
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -156,6 +169,22 @@
     JIssue *issue = _issues[indexPath.section][indexPath.row];
     cell.textLabel.text = issue.issueTitle;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    selectedIssue = _issues[indexPath.section][indexPath.row];
+    [self  performSegueWithIdentifier:@"issueSelected" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"issueSelected"]){
+        JEditIssueViewController *editIssueViewController = segue.destinationViewController;
+        editIssueViewController.authValue = authValue;
+        editIssueViewController.issue = selectedIssue;
+        editIssueViewController.project = _project;
+    }
 }
 
 @end

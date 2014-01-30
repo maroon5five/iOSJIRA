@@ -8,7 +8,9 @@
 
 #import "JCreateIssueViewController.h"
 
-@interface JCreateIssueViewController ()
+@interface JCreateIssueViewController (){
+    JStringFormatUtility *stringFormatUtility;
+}
 
 @end
 
@@ -16,14 +18,24 @@
 @synthesize authValue;
 @synthesize project;
 
+-(void)viewDidLoad
+{
+    stringFormatUtility = [[JStringFormatUtility alloc]init];
+    [super viewDidLoad];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"selectPriority"]){
         JPickerViewController *pickerController = segue.destinationViewController;
         pickerController.pickerToDisplay = PRIORITY_PICKER_VIEW;
+        pickerController.callingController = CREATE_ISSUE;
+        pickerController.defaultPickerValue = _priorityButton.titleLabel.text;
     } else if([segue.identifier isEqualToString:@"selectIssueType"]){
         JPickerViewController *pickerController = segue.destinationViewController;
         pickerController.pickerToDisplay = ISSUE_TYPE_PICKER;
+        pickerController.callingController = CREATE_ISSUE;
+        pickerController.defaultPickerValue = _issueTypeButton.titleLabel.text;
     } else if([segue.identifier isEqualToString:@"nextPage"]){
         JIssueDescriptionViewController *descriptionViewController = segue.destinationViewController;
         JIssue *issue = [self createIssueWithFieldsFromPage];
@@ -33,10 +45,30 @@
     }
 }
 
+- (IBAction)goToDescriptionPage:(UIButton *)sender {
+    bool goodToGoToNextPage = true;
+    _errorTextView.text = @"";
+    if(_titleEditText.text.length == 0){
+        goodToGoToNextPage = false;
+        _errorTextView.text = [_errorTextView.text stringByAppendingString:@"Don't forget to add a Title\n"];
+    }
+    if([_priorityButton.titleLabel.text isEqualToString:@"Select Priority"]){
+        goodToGoToNextPage = false;
+        _errorTextView.text = [_errorTextView.text stringByAppendingString:@"Don't forget to select a Priority\n"];
+    }
+    if([_issueTypeButton.titleLabel.text isEqualToString:@"Select Issue Type"]){
+        goodToGoToNextPage = false;
+        _errorTextView.text = [_errorTextView.text stringByAppendingString:@"Don't forget to select an Issue Type\n"];
+    }
+    if(goodToGoToNextPage){
+        [self performSegueWithIdentifier:@"nextPage" sender:self];
+    }
+}
+
 -(JIssue *)createIssueWithFieldsFromPage
 {
     JIssue *issue = [[JIssue alloc] init];
-    issue.issueTitle = _titleEditText.text;
+    issue.issueTitle = [stringFormatUtility addEscapeScharactersToString:_titleEditText.text];
     if (![_priorityButton.titleLabel.text isEqualToString:@"Select Priority"]) {
         issue.issuePriority = _priorityButton.titleLabel.text;
     }
@@ -45,6 +77,8 @@
     }
     if([_storyPointsEditText.text intValue]){
         issue.issueStoryPoints = _storyPointsEditText.text;
+    } else {
+        issue.issueStoryPoints = @"0";
     }
     return issue;
 }

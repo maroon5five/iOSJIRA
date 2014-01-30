@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "JIssue.h"
 #import "JProject.h"
+#import "JConstants.h"
+#import "JStringFormatUtility.h"
+#import "JIssueListController.h"
 
 @interface JIssueDescriptionViewController : UIViewController
 
@@ -17,8 +20,11 @@
 @property(nonatomic) JProject *project;
 @property(nonatomic) JIssue *issue;
 @property(nonatomic) NSString *authValue;
+@property(nonatomic) int callingController;
 
 -(void)setUpDescriptionEditTextStyle;
 
 - (IBAction)submitIssue:(UIButton *)sender;
+-(void)persistNewIssue;
+-(void)updateIssue;
 @end
