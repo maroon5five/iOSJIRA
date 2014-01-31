@@ -14,7 +14,10 @@
 
 @interface JProjectListController : UITableViewController
 @property(nonatomic) NSString *authValue;
+@property(nonatomic) NSString *username;
 @property(nonatomic) NSMutableArray *projects;
 @property(nonatomic) JProject *selectedProject;
+
+-(void)getAllProjects;
 
 @end

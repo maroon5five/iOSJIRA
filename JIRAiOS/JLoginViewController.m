@@ -60,6 +60,7 @@
     if([segue.identifier isEqualToString:@"loginSuccess"]){
         JProjectListController *projectListController = segue.destinationViewController;
         projectListController.authValue = _authValue;
+        projectListController.username = _usernameTextView.text;
     }
 }
 

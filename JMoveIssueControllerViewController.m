@@ -8,31 +8,110 @@
 
 #import "JMoveIssueControllerViewController.h"
 
-@interface JMoveIssueControllerViewController ()
+@interface JMoveIssueControllerViewController (){
+    NSMutableArray *availableMovements;
+}
 
 @end
 
 @implementation JMoveIssueControllerViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize issue;
+@synthesize authValue;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    availableMovements = [[NSMutableArray alloc] init];
+	_issueStatusTable.delegate = self;
+    _issueStatusTable.dataSource = self;
+    [self getAllAvailableTransitions];
 }
 
-- (void)didReceiveMemoryWarning
+-(void)getAllAvailableTransitions
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSString *urlString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/transitions", issue.issueId];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
+    [request setHTTPMethod:@"GET"];
+    
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        //parse data here
+        NSError *jsonError;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+        if(json){
+            NSArray *availableTransitions = [json objectForKey:@"transitions"];
+            [self handleResponseWithAllTransitions:availableTransitions];
+            //return to main thread and reload data
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.issueStatusTable reloadData];
+            });
+        }
+    }];
+}
+
+-(void)handleResponseWithAllTransitions:(NSArray *)availableTransitions
+{
+    for (NSDictionary *transition in availableTransitions) {
+        NSArray *transitionValues = [[NSArray alloc] initWithObjects:[transition objectForKey:@"id"], [transition objectForKey:@"name"], nil];
+        [availableMovements addObject:transitionValues];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *urlString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/transitions", issue.issueId];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
+    [request setHTTPMethod:@"POST"];
+    
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    NSString *jsonBodyString = [NSString stringWithFormat:@"{\"update\": {}, \"fields\": {}, \"transition\": {\"id\": \"%@\" } }", availableMovements[indexPath.row][0]];
+    [request setHTTPBody: [jsonBodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        //parse data here
+        NSError *jsonError;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+        if(json){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self returnToEditPage];
+            });
+        }
+    }];
+}
+
+-(void)returnToEditPage
+{
+    UINavigationController *navController = self.navigationController;
+    NSArray *navViewControllers = [navController viewControllers];
+    JEditIssueViewController *issueEditViewController = navViewControllers[navViewControllers.count-2];
+    [navController popToViewController:issueEditViewController animated:YES];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (availableMovements != nil) {
+        return availableMovements.count;
+    } else {
+        return 0;
+    }
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    NSString *transitionTitle = availableMovements[indexPath.row][1];
+    cell.textLabel.text = transitionTitle;
+    return cell;
 }
 
 @end

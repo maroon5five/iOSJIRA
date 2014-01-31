@@ -16,7 +16,6 @@ static const int QA_REVIEW = 4;
 static const int DEMO_READY = 5;
 static const int DONE_DONE = 6;
 
-
 static const int CREATE_ISSUE = 0;
 static const int EDIT_ISSUE = 1;
 

@@ -18,6 +18,7 @@
 @synthesize issue;
 @synthesize authValue;
 @synthesize project;
+@synthesize username;
 
 -(void)viewDidLoad
 {
@@ -31,7 +32,17 @@
     _titleEditText.text = issue.issueTitle;
     [_priorityButton setTitle:issue.issuePriority forState:UIControlStateNormal];
     [_issueTypeButton setTitle:issue.issueType forState:UIControlStateNormal];
-    _storyPointsEditText.text = [NSString stringWithFormat:@"%@", issue.issueStoryPoints];
+    if([_storyPointsEditText.text intValue]){
+        _storyPointsEditText.text = issue.issueStoryPoints;
+    } else {
+        _storyPointsEditText.text = @"0";
+    }
+    if(issue.issueAssignee != nil){
+        _assigneeTextView.text = issue.issueAssignee;
+    } else {
+        _assigneeTextView.text = @"Unassigned";
+    }
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -53,6 +64,10 @@
         descriptionViewController.authValue = authValue;
         descriptionViewController.project = project;
         descriptionViewController.callingController = EDIT_ISSUE;
+    } else if([segue.identifier isEqualToString:@"moveIssue"]){
+        JMoveIssueControllerViewController *moveIssueController = segue.destinationViewController;
+        moveIssueController.issue = issue;
+        moveIssueController.authValue = authValue;
     }
 }
 
@@ -99,6 +114,48 @@
     [deleteConfirmation showInView:self.view];
 }
 
+- (IBAction)assignIssueToMe:(UIButton *)sender {
+    NSString *updateJsonString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/assignee", issue.issueId];
+    NSURL *url = [NSURL URLWithString:updateJsonString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
+    [request setHTTPMethod:@"PUT"];
+    NSString *jsonBodyString = [NSString stringWithFormat:@"{\"name\": \"%@\"}", username];
+    [request setHTTPBody: [jsonBodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        //Return to main thread
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self requestIssue];
+            UINavigationController *navController = self.navigationController;
+            NSArray *navViewControllers = [navController viewControllers];
+            UITabBarController *issueTabBarController = navViewControllers[navViewControllers.count-2];
+            JIssueListController *issueListController = [issueTabBarController.viewControllers objectAtIndex:0];
+            issueListController.reloadData = true;
+
+        });
+    }];
+}
+
+-(void)requestIssue
+{
+    NSString *updateJsonString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@", issue.issueId];
+    NSURL *url = [NSURL URLWithString:updateJsonString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        NSError *jsonError;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+        NSString *assignee = [[[json objectForKey:@"fields"]objectForKey:@"assignee"] objectForKey:@"displayName"];
+        //Return to main thread
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            _assigneeTextView.text = assignee;
+        });
+    }];
+}
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0){
@@ -114,6 +171,8 @@
                 UINavigationController *navController = self.navigationController;
                 NSArray *navViewControllers = [navController viewControllers];
                 UITabBarController *issueTabBarController = navViewControllers[navViewControllers.count-2];
+                JIssueListController *issueListController = [issueTabBarController.viewControllers objectAtIndex:0];
+                issueListController.reloadData = true;
                 [navController popToViewController:issueTabBarController animated:YES];
             });
         }];

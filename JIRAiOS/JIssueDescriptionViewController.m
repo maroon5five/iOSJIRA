@@ -55,7 +55,7 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
     [request setHTTPMethod:@"POST"];
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
-    NSString *jsonString = [NSString stringWithFormat:@"{\"fields\" : {\"project\":{\"key\":\"%@\"}, \"summary\": \"%@\", \"description\":\"%@\", \"issuetype\":{\"name\":\"%@\"}, \"priority\":{\"name\":\"%@\"}, \"customfield_10004\":%@}}", _project.projectKey, issue.issueTitle, issue.issueDescription, issue.issueType, issue.issuePriority, issue.issueStoryPoints];
+    NSString *jsonString = [NSString stringWithFormat:@"{\"fields\" : {\"project\":{\"key\":\"%@\"}, \"summary\": \"%@\", \"description\":\"%@\", \"issuetype\":{\"name\":\"%@\"}, \"priority\":{\"name\":\"%@\"}}}", _project.projectKey, issue.issueTitle, issue.issueDescription, issue.issueType, issue.issuePriority];
     [request setHTTPBody: [jsonString dataUsingEncoding:NSUTF8StringEncoding]];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //Return to main thread
@@ -68,6 +68,8 @@
             createIssueController.storyPointsEditText.text = @"";
             [createIssueController.priorityButton setTitle:@"Select Priority" forState:UIControlStateNormal];
             [createIssueController.issueTypeButton setTitle:@"Select Issue Type" forState:UIControlStateNormal];
+            JIssueListController *issueListController = [issueTabBarController.viewControllers objectAtIndex:0];
+            issueListController.reloadData = true;
             [navController popToViewController:issueTabBarController animated:YES];
         });
     }];
@@ -89,6 +91,8 @@
             UINavigationController *navController = self.navigationController;
             NSArray *navViewControllers = [navController viewControllers];
             UITabBarController *issueTabBarController = navViewControllers[navViewControllers.count-3];
+            JIssueListController *issueListController = [issueTabBarController.viewControllers objectAtIndex:0];
+            issueListController.reloadData = true;
             [navController popToViewController:issueTabBarController animated:YES];
         });
     }];

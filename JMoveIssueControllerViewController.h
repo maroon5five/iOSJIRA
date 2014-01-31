@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JIssue.h"
+#import "JEditIssueViewController.h"
 
-@interface JMoveIssueControllerViewController : UIViewController
+@interface JMoveIssueControllerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@property(nonatomic) JIssue *issue;
+@property(nonatomic) NSString *authValue;
+
+@property (weak, nonatomic) IBOutlet UITableView *issueStatusTable;
+
+-(void)getAllAvailableTransitions;
+-(void)handleResponseWithAllTransitions:(NSArray *)availableTransitions;
+-(void)returnToEditPage;
 
 @end

@@ -24,19 +24,29 @@
 
 @implementation JIssueListController
 @synthesize authValue;
+@synthesize username;
+@synthesize reloadData;
 
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
+    reloadData = true;
     [super viewDidLoad];
 }
-
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    _issues = nil;
-    [self initializeArrays];
-    [self.tableView reloadData];
-    [self getAllIssuesForProject];
+    if (reloadData) {
+        _issues = nil;
+        [self initializeArrays];
+        [self.tableView reloadData];
+        [self getAllIssuesForProject];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    reloadData = false;
+    [super viewWillDisappear:animated];
 }
 
 - (void)initializeArrays
@@ -184,6 +194,7 @@
         editIssueViewController.authValue = authValue;
         editIssueViewController.issue = selectedIssue;
         editIssueViewController.project = _project;
+        editIssueViewController.username = username;
     }
 }
 

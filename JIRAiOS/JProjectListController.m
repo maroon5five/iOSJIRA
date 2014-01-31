@@ -14,11 +14,17 @@
 
 @implementation JProjectListController
 @synthesize authValue;
+@synthesize username;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     _projects = [[NSMutableArray alloc] init];
+    [self getAllProjects];
+}
+
+-(void)getAllProjects
+{
     NSURL *url = [NSURL URLWithString:@"https://catalystit.atlassian.net/rest/api/2/project"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
@@ -42,9 +48,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[self tableView] reloadData];
             });
-        } 
+        }
     }];
-
 }
 
 #pragma mark - Table view data source
@@ -88,6 +93,7 @@
         JIssueListController *issueListController = [issueTabBarController.viewControllers objectAtIndex:0];
         issueListController.authValue = authValue;
         issueListController.project = _selectedProject;
+        issueListController.username = username;
         
         JCreateIssueViewController *createIssueController = [issueTabBarController.viewControllers objectAtIndex:1];
         createIssueController.authValue = authValue;

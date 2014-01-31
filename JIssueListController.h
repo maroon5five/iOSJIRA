@@ -15,7 +15,9 @@
 @interface JIssueListController : UITableViewController
 @property(nonatomic) NSString *authValue;
 @property(nonatomic) JProject *project;
+@property(nonatomic) NSString *username;
 @property(nonatomic) NSArray *issues;
+@property(nonatomic) bool reloadData;
 
 - (void)initializeArrays;
 - (void)buildIssueAndStoreItInTheProperArray:(NSDictionary *)jsonIssue;
