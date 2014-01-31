@@ -177,6 +177,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     JIssue *issue = _issues[indexPath.section][indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@ Icon.jpg", issue.issueType]];
     cell.textLabel.text = issue.issueTitle;
     return cell;
 }

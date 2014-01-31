@@ -25,6 +25,20 @@
 		A840B0F3188F1E6D00B65198 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A840B0D2188F1E6D00B65198 /* UIKit.framework */; };
 		A840B0FB188F1E6D00B65198 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A840B0F9188F1E6D00B65198 /* InfoPlist.strings */; };
 		A840B0FD188F1E6D00B65198 /* JIRAiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A840B0FC188F1E6D00B65198 /* JIRAiOSTests.m */; };
+		A843EEB2189C1BBD00DB8528 /* Blocker Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEA4189C1BBD00DB8528 /* Blocker Icon.jpg */; };
+		A843EEB3189C1BBD00DB8528 /* Bug Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEA5189C1BBD00DB8528 /* Bug Icon.jpg */; };
+		A843EEB4189C1BBD00DB8528 /* Critical Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEA6189C1BBD00DB8528 /* Critical Icon.jpg */; };
+		A843EEB5189C1BBD00DB8528 /* Enhancement Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEA7189C1BBD00DB8528 /* Enhancement Icon.jpg */; };
+		A843EEB6189C1BBD00DB8528 /* Epic Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEA8189C1BBD00DB8528 /* Epic Icon.jpg */; };
+		A843EEB7189C1BBD00DB8528 /* Improvement Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEA9189C1BBD00DB8528 /* Improvement Icon.jpg */; };
+		A843EEB8189C1BBD00DB8528 /* Major Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEAA189C1BBD00DB8528 /* Major Icon.jpg */; };
+		A843EEB9189C1BBD00DB8528 /* Minor Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEAB189C1BBD00DB8528 /* Minor Icon.jpg */; };
+		A843EEBA189C1BBD00DB8528 /* New Feature Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEAC189C1BBD00DB8528 /* New Feature Icon.jpg */; };
+		A843EEBB189C1BBD00DB8528 /* Research Task Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEAD189C1BBD00DB8528 /* Research Task Icon.jpg */; };
+		A843EEBC189C1BBD00DB8528 /* Story Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEAE189C1BBD00DB8528 /* Story Icon.jpg */; };
+		A843EEBD189C1BBD00DB8528 /* Task Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEAF189C1BBD00DB8528 /* Task Icon.jpg */; };
+		A843EEBE189C1BBD00DB8528 /* Trivial Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEB0189C1BBD00DB8528 /* Trivial Icon.jpg */; };
+		A843EEBF189C1BBD00DB8528 /* Unprioritized Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEB1189C1BBD00DB8528 /* Unprioritized Icon.jpg */; };
 		A88D0963189058890012C99F /* JLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A88D0962189058890012C99F /* JLoginViewController.m */; };
 		A88D096618907A280012C99F /* JEncodeStringBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A88D096518907A280012C99F /* JEncodeStringBase64.m */; };
 		A8AECD7D18908BA400B86EBD /* JProjectListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD7C18908BA400B86EBD /* JProjectListController.m */; };
@@ -74,6 +88,20 @@
 		A840B0F8188F1E6D00B65198 /* JIRAiOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JIRAiOSTests-Info.plist"; sourceTree = "<group>"; };
 		A840B0FA188F1E6D00B65198 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A840B0FC188F1E6D00B65198 /* JIRAiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JIRAiOSTests.m; sourceTree = "<group>"; };
+		A843EEA4189C1BBD00DB8528 /* Blocker Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Blocker Icon.jpg"; sourceTree = "<group>"; };
+		A843EEA5189C1BBD00DB8528 /* Bug Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Bug Icon.jpg"; sourceTree = "<group>"; };
+		A843EEA6189C1BBD00DB8528 /* Critical Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Critical Icon.jpg"; sourceTree = "<group>"; };
+		A843EEA7189C1BBD00DB8528 /* Enhancement Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Enhancement Icon.jpg"; sourceTree = "<group>"; };
+		A843EEA8189C1BBD00DB8528 /* Epic Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Epic Icon.jpg"; sourceTree = "<group>"; };
+		A843EEA9189C1BBD00DB8528 /* Improvement Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Improvement Icon.jpg"; sourceTree = "<group>"; };
+		A843EEAA189C1BBD00DB8528 /* Major Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Major Icon.jpg"; sourceTree = "<group>"; };
+		A843EEAB189C1BBD00DB8528 /* Minor Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Minor Icon.jpg"; sourceTree = "<group>"; };
+		A843EEAC189C1BBD00DB8528 /* New Feature Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "New Feature Icon.jpg"; sourceTree = "<group>"; };
+		A843EEAD189C1BBD00DB8528 /* Research Task Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Research Task Icon.jpg"; sourceTree = "<group>"; };
+		A843EEAE189C1BBD00DB8528 /* Story Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Story Icon.jpg"; sourceTree = "<group>"; };
+		A843EEAF189C1BBD00DB8528 /* Task Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Task Icon.jpg"; sourceTree = "<group>"; };
+		A843EEB0189C1BBD00DB8528 /* Trivial Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Trivial Icon.jpg"; sourceTree = "<group>"; };
+		A843EEB1189C1BBD00DB8528 /* Unprioritized Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Unprioritized Icon.jpg"; sourceTree = "<group>"; };
 		A88D0961189058890012C99F /* JLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLoginViewController.h; sourceTree = "<group>"; };
 		A88D0962189058890012C99F /* JLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLoginViewController.m; sourceTree = "<group>"; };
 		A88D096418907A280012C99F /* JEncodeStringBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEncodeStringBase64.h; sourceTree = "<group>"; };
@@ -151,6 +179,7 @@
 		A840B0D4188F1E6D00B65198 /* JIRAiOS */ = {
 			isa = PBXGroup;
 			children = (
+				A843EEA3189C1B8B00DB8528 /* Images */,
 				A8AECD901891905000B86EBD /* Utilities */,
 				A8AECD8F1891903A00B86EBD /* AppDelegate */,
 				A8AECD8D18918FE900B86EBD /* Entities */,
@@ -206,6 +235,27 @@
 				A840B0F9188F1E6D00B65198 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A843EEA3189C1B8B00DB8528 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A843EEA4189C1BBD00DB8528 /* Blocker Icon.jpg */,
+				A843EEA5189C1BBD00DB8528 /* Bug Icon.jpg */,
+				A843EEA6189C1BBD00DB8528 /* Critical Icon.jpg */,
+				A843EEA7189C1BBD00DB8528 /* Enhancement Icon.jpg */,
+				A843EEA8189C1BBD00DB8528 /* Epic Icon.jpg */,
+				A843EEA9189C1BBD00DB8528 /* Improvement Icon.jpg */,
+				A843EEAA189C1BBD00DB8528 /* Major Icon.jpg */,
+				A843EEAB189C1BBD00DB8528 /* Minor Icon.jpg */,
+				A843EEAC189C1BBD00DB8528 /* New Feature Icon.jpg */,
+				A843EEAD189C1BBD00DB8528 /* Research Task Icon.jpg */,
+				A843EEAE189C1BBD00DB8528 /* Story Icon.jpg */,
+				A843EEAF189C1BBD00DB8528 /* Task Icon.jpg */,
+				A843EEB0189C1BBD00DB8528 /* Trivial Icon.jpg */,
+				A843EEB1189C1BBD00DB8528 /* Unprioritized Icon.jpg */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		A8AECD8D18918FE900B86EBD /* Entities */ = {
@@ -329,8 +379,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A843EEBA189C1BBD00DB8528 /* New Feature Icon.jpg in Resources */,
+				A843EEB9189C1BBD00DB8528 /* Minor Icon.jpg in Resources */,
+				A843EEBE189C1BBD00DB8528 /* Trivial Icon.jpg in Resources */,
+				A843EEB3189C1BBD00DB8528 /* Bug Icon.jpg in Resources */,
 				A840B0EA188F1E6D00B65198 /* Images.xcassets in Resources */,
+				A843EEBC189C1BBD00DB8528 /* Story Icon.jpg in Resources */,
+				A843EEB2189C1BBD00DB8528 /* Blocker Icon.jpg in Resources */,
+				A843EEB4189C1BBD00DB8528 /* Critical Icon.jpg in Resources */,
 				A840B0D9188F1E6D00B65198 /* InfoPlist.strings in Resources */,
+				A843EEBD189C1BBD00DB8528 /* Task Icon.jpg in Resources */,
+				A843EEB6189C1BBD00DB8528 /* Epic Icon.jpg in Resources */,
+				A843EEBB189C1BBD00DB8528 /* Research Task Icon.jpg in Resources */,
+				A843EEB8189C1BBD00DB8528 /* Major Icon.jpg in Resources */,
+				A843EEB5189C1BBD00DB8528 /* Enhancement Icon.jpg in Resources */,
+				A843EEBF189C1BBD00DB8528 /* Unprioritized Icon.jpg in Resources */,
+				A843EEB7189C1BBD00DB8528 /* Improvement Icon.jpg in Resources */,
 				A840B0E2188F1E6D00B65198 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
