@@ -18,13 +18,14 @@
     NSMutableArray *doneDoneIssues;
     
     JIssue *selectedIssue;
+    
+    UIActivityIndicatorView *activityIndicatorView;
+    JNetworkUtility *networkUtility;
 }
 
 @end
 
 @implementation JIssueListController
-@synthesize authValue;
-@synthesize username;
 @synthesize reloadData;
 
 -(void)viewDidLoad
@@ -110,15 +111,10 @@
 
 - (void)getAllIssuesForProject
 {
-    NSString *urlString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/search?jql=project=%@&maxResults=5000", _project.projectKey];
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-    [request setHTTPMethod:@"GET"];
-    
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
-    
+    [self startActivityIndicator];
+    networkUtility = [JNetworkUtility getNetworkUtility];
+    NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/search?jql=project=%@&maxResults=5000", _project.projectKey];
+    NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:GET];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //parse data here
         NSError *jsonError;
@@ -128,17 +124,32 @@
             [self handleResponseWithAllIssuesForProject:jsonIssues];
             //return to main thread and reload data
             dispatch_async(dispatch_get_main_queue(), ^{
+                [activityIndicatorView removeFromSuperview];
                 [[self tableView] reloadData];
             });
         }
     }];
 }
 
+-(void)startActivityIndicator
+{
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    activityIndicatorView.center = CGPointMake(screenRect.size.width/2, screenRect.size.height/3);
+    [activityIndicatorView startAnimating];
+    [self.view addSubview: activityIndicatorView];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 7;
+    if(_issues == nil){
+        return 0;
+    } else {
+        return 7;
+
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -192,10 +203,8 @@
 {
     if([segue.identifier isEqualToString:@"issueSelected"]){
         JEditIssueViewController *editIssueViewController = segue.destinationViewController;
-        editIssueViewController.authValue = authValue;
         editIssueViewController.issue = selectedIssue;
         editIssueViewController.project = _project;
-        editIssueViewController.username = username;
     }
 }
 

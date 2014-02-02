@@ -22,6 +22,11 @@ static const int EDIT_ISSUE = 1;
 static const int PRIORITY_PICKER_VIEW = 0;
 static const int ISSUE_TYPE_PICKER = 1;
 
+static NSString *const POST = @"POST";
+static NSString *const GET = @"GET";
+static NSString *const PUT = @"PUT";
+static NSString *const DELETE = @"DELETE";
+
 @interface JConstants : NSObject
 
 @end

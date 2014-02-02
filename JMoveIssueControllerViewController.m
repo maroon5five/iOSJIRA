@@ -10,17 +10,18 @@
 
 @interface JMoveIssueControllerViewController (){
     NSMutableArray *availableMovements;
+    JNetworkUtility *networkUtility;
 }
 
 @end
 
 @implementation JMoveIssueControllerViewController
 @synthesize issue;
-@synthesize authValue;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    networkUtility = [JNetworkUtility getNetworkUtility];
     availableMovements = [[NSMutableArray alloc] init];
 	_issueStatusTable.delegate = self;
     _issueStatusTable.dataSource = self;
@@ -29,14 +30,8 @@
 
 -(void)getAllAvailableTransitions
 {
-    NSString *urlString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/transitions", issue.issueId];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-    [request setHTTPMethod:@"GET"];
-    
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
-    
+    NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/transitions", issue.issueId];
+    NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:GET];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //parse data here
         NSError *jsonError;
@@ -62,17 +57,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *urlString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/transitions", issue.issueId];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-    [request setHTTPMethod:@"POST"];
-    
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
-    NSString *jsonBodyString = [NSString stringWithFormat:@"{\"update\": {}, \"fields\": {}, \"transition\": {\"id\": \"%@\" } }", availableMovements[indexPath.row][0]];
-    [request setHTTPBody: [jsonBodyString dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
+    NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/transitions", issue.issueId];
+     NSString *httpBody = [NSString stringWithFormat:@"{\"update\": {}, \"fields\": {}, \"transition\": {\"id\": \"%@\" } }", availableMovements[indexPath.row][0]];
+    NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:POST HTTPBody:httpBody];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //parse data here
         NSError *jsonError;

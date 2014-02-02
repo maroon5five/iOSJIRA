@@ -14,7 +14,6 @@
 #import "JStringFormatUtility.h"
 
 @interface JCreateIssueViewController : UIViewController
-@property(nonatomic) NSString *authValue;
 @property(nonatomic) JProject *project;
 
 @property (weak, nonatomic) IBOutlet UITextField *titleEditText;

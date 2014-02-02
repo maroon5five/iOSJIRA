@@ -15,7 +15,6 @@
 @end
 
 @implementation JCreateIssueViewController
-@synthesize authValue;
 @synthesize project;
 
 -(void)viewDidLoad
@@ -40,7 +39,6 @@
         JIssueDescriptionViewController *descriptionViewController = segue.destinationViewController;
         JIssue *issue = [self createIssueWithFieldsFromPage];
         descriptionViewController.issue = issue;
-        descriptionViewController.authValue = authValue;
         descriptionViewController.project = project;
     }
 }

@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "JEncodeStringBase64.h"
 #import "JProjectListController.h"
+#import "JNetworkUtility.h"
+#import "JConstants.h"
 
 @interface JLoginViewController : UIViewController
 
-@property (strong, nonatomic) NSString *authValue;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextView;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextView;
 @property (weak, nonatomic) IBOutlet UILabel *errorTextView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 -(IBAction)login:(id)sender;
 -(void)handleLoginResponse:(NSDictionary *)loginResponseData;
 

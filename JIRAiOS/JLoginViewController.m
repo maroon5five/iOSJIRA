@@ -8,7 +8,9 @@
 
 #import "JLoginViewController.h"
 
-@interface JLoginViewController ()
+@interface JLoginViewController (){
+    JNetworkUtility *networkUtility;
+}
 
 @end
 
@@ -18,25 +20,22 @@
  * Called when the user presses the login button
  */
 - (IBAction)login:(id)sender {
+    _errorTextView.text = @"";
+    networkUtility = [JNetworkUtility getNetworkUtility];
     NSString *username = _usernameTextView.text;
     NSString *password = _passwordTextView.text;
-    
+    [self.activityIndicatorView startAnimating];
+    [networkUtility setUpAuthenticationValueWithUsername:username Password:password];
     //HTTP request to JIRA for login
-    NSURL *url = [NSURL URLWithString:@"https://catalystit.atlassian.net/rest/auth/latest/session/"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-    [request setHTTPMethod:@"POST"];
-    NSString *basicAuthCredentials = [NSString stringWithFormat:@"%@:%@", username, password];
-    _authValue = [NSString stringWithFormat:@"Basic %@", [JEncodeStringBase64 encodeStringBase64:basicAuthCredentials]];
-    [request setValue:_authValue forHTTPHeaderField:@"Authorization"];
-    NSString *jsonString = [NSString stringWithFormat:@"{\"username\" : \"%@\", \"password\" : \"%@\"}", username, password];
-    [request setHTTPBody: [jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *httpBody = [NSString stringWithFormat:@"{\"username\" : \"%@\", \"password\" : \"%@\"}", username, password];
+    NSMutableURLRequest *request = [networkUtility createRequestWithURL: @"https://catalystit.atlassian.net/rest/auth/latest/session/" HTTPMethod:POST HTTPBody:httpBody];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
        //Handle the response
         NSError *jsonError;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
         //Return to main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self.activityIndicatorView stopAnimating];
             [self handleLoginResponse:json];
         });
     }];
@@ -58,9 +57,9 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"loginSuccess"]){
-        JProjectListController *projectListController = segue.destinationViewController;
-        projectListController.authValue = _authValue;
-        projectListController.username = _usernameTextView.text;
+        networkUtility.currentUser = _usernameTextView.text;
+        _usernameTextView.text = @"";
+        _passwordTextView.text = @"";
     }
 }
 

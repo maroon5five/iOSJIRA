@@ -10,14 +10,14 @@
 #import "JProject.h"
 #import "JIssueTabBarController.h"
 #import "JIssueListController.h"
+#import "JNetworkUtility.h"
+#import "JConstants.h"
 #import "JCreateIssueViewController.h"
 
 @interface JProjectListController : UITableViewController
-@property(nonatomic) NSString *authValue;
-@property(nonatomic) NSString *username;
 @property(nonatomic) NSMutableArray *projects;
 @property(nonatomic) JProject *selectedProject;
 
 -(void)getAllProjects;
-
+-(void)startActivityIndicator;
 @end

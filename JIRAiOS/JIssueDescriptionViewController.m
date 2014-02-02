@@ -10,18 +10,19 @@
 
 @interface JIssueDescriptionViewController (){
     JStringFormatUtility *stringFormatUtility;
+    JNetworkUtility *networkUtility;
 }
 
 @end
 
 @implementation JIssueDescriptionViewController
 @synthesize issue;
-@synthesize authValue;
 @synthesize callingController;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    networkUtility = [JNetworkUtility getNetworkUtility];
     stringFormatUtility = [[JStringFormatUtility alloc] init];
     [self setUpDescriptionEditTextStyle];
     if(callingController == EDIT_ISSUE){
@@ -50,13 +51,8 @@
 
 -(void)persistNewIssue
 {
-    NSURL *url = [NSURL URLWithString:@"https://catalystit.atlassian.net/rest/api/2/issue/"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
-    NSString *jsonString = [NSString stringWithFormat:@"{\"fields\" : {\"project\":{\"key\":\"%@\"}, \"summary\": \"%@\", \"description\":\"%@\", \"issuetype\":{\"name\":\"%@\"}, \"priority\":{\"name\":\"%@\"}}}", _project.projectKey, issue.issueTitle, issue.issueDescription, issue.issueType, issue.issuePriority];
-    [request setHTTPBody: [jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *httpBody = [NSString stringWithFormat:@"{\"fields\" : {\"project\":{\"key\":\"%@\"}, \"summary\": \"%@\", \"description\":\"%@\", \"issuetype\":{\"name\":\"%@\"}, \"priority\":{\"name\":\"%@\"}}}", _project.projectKey, issue.issueTitle, issue.issueDescription, issue.issueType, issue.issuePriority];
+    NSMutableURLRequest *request = [networkUtility createRequestWithURL:@"https://catalystit.atlassian.net/rest/api/2/issue/" HTTPMethod:POST HTTPBody:httpBody];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //Return to main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -77,14 +73,9 @@
 
 -(void)updateIssue
 {
-    NSString *updateJsonString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@", issue.issueId];
-    NSURL *url = [NSURL URLWithString:updateJsonString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-    [request setHTTPMethod:@"PUT"];
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
-    NSString *jsonString = [NSString stringWithFormat:@"{\"fields\" : {\"project\":{\"key\":\"%@\"}, \"summary\": \"%@\", \"description\":\"%@\", \"issuetype\":{\"name\":\"%@\"}, \"priority\":{\"name\":\"%@\"}, \"customfield_10004\":%@}}", _project.projectKey, issue.issueTitle, issue.issueDescription, issue.issueType, issue.issuePriority, issue.issueStoryPoints];
-    [request setHTTPBody: [jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@", issue.issueId];
+    NSString *httpBody = [NSString stringWithFormat:@"{\"fields\" : {\"project\":{\"key\":\"%@\"}, \"summary\": \"%@\", \"description\":\"%@\", \"issuetype\":{\"name\":\"%@\"}, \"priority\":{\"name\":\"%@\"}, \"customfield_10004\":%@}}", _project.projectKey, issue.issueTitle, issue.issueDescription, issue.issueType, issue.issuePriority, issue.issueStoryPoints];
+    NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:PUT HTTPBody:httpBody];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //Return to main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){

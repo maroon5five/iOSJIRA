@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "JIssue.h"
 #import "JEditIssueViewController.h"
+#import "JNetworkUtility.h"
 
 @interface JMoveIssueControllerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic) JIssue *issue;
-@property(nonatomic) NSString *authValue;
 
 @property (weak, nonatomic) IBOutlet UITableView *issueStatusTable;
 

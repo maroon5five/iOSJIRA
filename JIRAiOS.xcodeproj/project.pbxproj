@@ -48,6 +48,7 @@
 		A8AECD931891A99000B86EBD /* JIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD921891A99000B86EBD /* JIssue.m */; };
 		A8AECD961892F57400B86EBD /* JCreateIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD951892F57400B86EBD /* JCreateIssueViewController.m */; };
 		A8AECD991896DB4200B86EBD /* JPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD981896DB4200B86EBD /* JPickerViewController.m */; };
+		B2965699189E1EB900DE7BDC /* JNetworkUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = B2965698189E1EB900DE7BDC /* JNetworkUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		A8AECD951892F57400B86EBD /* JCreateIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCreateIssueViewController.m; path = ../JCreateIssueViewController.m; sourceTree = "<group>"; };
 		A8AECD971896DB4200B86EBD /* JPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPickerViewController.h; path = ../JPickerViewController.h; sourceTree = "<group>"; };
 		A8AECD981896DB4200B86EBD /* JPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPickerViewController.m; path = ../JPickerViewController.m; sourceTree = "<group>"; };
+		B2965697189E1EB900DE7BDC /* JNetworkUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNetworkUtility.h; sourceTree = "<group>"; };
+		B2965698189E1EB900DE7BDC /* JNetworkUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNetworkUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +298,8 @@
 				A88D096518907A280012C99F /* JEncodeStringBase64.m */,
 				A80B85CD1899864F009C3381 /* JStringFormatUtility.h */,
 				A80B85CE1899864F009C3381 /* JStringFormatUtility.m */,
+				B2965697189E1EB900DE7BDC /* JNetworkUtility.h */,
+				B2965698189E1EB900DE7BDC /* JNetworkUtility.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				A8AECD8C18918FD700B86EBD /* JIssueListController.m in Sources */,
 				A8AECD961892F57400B86EBD /* JCreateIssueViewController.m in Sources */,
 				A8AECD8918918FA100B86EBD /* JIssueTabBarController.m in Sources */,
+				B2965699189E1EB900DE7BDC /* JNetworkUtility.m in Sources */,
 				A80B85D81899D8C8009C3381 /* JMoveIssueControllerViewController.m in Sources */,
 				A80B85C918981B13009C3381 /* JEditIssueViewController.m in Sources */,
 				A80B85CF1899864F009C3381 /* JStringFormatUtility.m in Sources */,

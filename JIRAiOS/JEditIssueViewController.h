@@ -13,6 +13,7 @@
 #import "JConstants.h"
 #import "JStringFormatUtility.h"
 #import "JMoveIssueControllerViewController.h"
+#import "JNetworkUtility.h"
 
 @interface JEditIssueViewController : UIViewController<UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleEditText;
@@ -24,9 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *assigneeTextView;
 
 @property(nonatomic) JIssue *issue;
-@property(nonatomic) NSString *authValue;
 @property(nonatomic) JProject *project;
-@property(nonatomic) NSString *username;
 - (IBAction)goToDescriptionPage:(UIButton *)sender;
 - (IBAction)deleteIssue:(UIButton *)sender;
 - (IBAction)assignIssueToMe:(UIButton *)sender;

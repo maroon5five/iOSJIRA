@@ -11,11 +11,11 @@
 #import "JIssue.h"
 #import "JEditIssueViewController.h"
 #import "JConstants.h"
+#import "JNetworkUtility.h"
+
 
 @interface JIssueListController : UITableViewController
-@property(nonatomic) NSString *authValue;
 @property(nonatomic) JProject *project;
-@property(nonatomic) NSString *username;
 @property(nonatomic) NSArray *issues;
 @property(nonatomic) bool reloadData;
 
@@ -23,5 +23,6 @@
 - (void)buildIssueAndStoreItInTheProperArray:(NSDictionary *)jsonIssue;
 - (void)handleResponseWithAllIssuesForProject:(NSArray *)jsonIssues;
 - (void)getAllIssuesForProject;
+- (void)startActivityIndicator;
 
 @end

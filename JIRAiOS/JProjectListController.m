@@ -8,30 +8,27 @@
 
 #import "JProjectListController.h"
 
-@interface JProjectListController ()
+@interface JProjectListController (){
+    UIActivityIndicatorView *activityIndicatorView;
+    JNetworkUtility *networkUtility;
+}
 
 @end
 
 @implementation JProjectListController
-@synthesize authValue;
-@synthesize username;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    networkUtility = [JNetworkUtility getNetworkUtility];
     _projects = [[NSMutableArray alloc] init];
     [self getAllProjects];
 }
 
 -(void)getAllProjects
 {
-    NSURL *url = [NSURL URLWithString:@"https://catalystit.atlassian.net/rest/api/2/project"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-    [request setHTTPMethod:@"GET"];
-    
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
-    
+    [self startActivityIndicator];
+    NSMutableURLRequest *request = [networkUtility createRequestWithURL:@"https://catalystit.atlassian.net/rest/api/2/project" HTTPMethod:GET];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //parse data here
         NSError *jsonError;
@@ -46,10 +43,20 @@
             }
             //return to main thread and reload data
             dispatch_async(dispatch_get_main_queue(), ^{
+                [activityIndicatorView removeFromSuperview];
                 [[self tableView] reloadData];
             });
         }
     }];
+}
+
+-(void)startActivityIndicator
+{
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    activityIndicatorView.center = CGPointMake(screenRect.size.width/2, screenRect.size.height/3);
+    [activityIndicatorView startAnimating];
+    [self.view addSubview: activityIndicatorView];
 }
 
 #pragma mark - Table view data source
@@ -76,7 +83,6 @@
     JProject *project = _projects[indexPath.row];
     cell.textLabel.text = [project projectName];
 
-    
     return cell;
 }
 
@@ -91,12 +97,9 @@
     if([segue.identifier isEqualToString:@"projectSelected"]){
         JIssueTabBarController *issueTabBarController = segue.destinationViewController;
         JIssueListController *issueListController = [issueTabBarController.viewControllers objectAtIndex:0];
-        issueListController.authValue = authValue;
         issueListController.project = _selectedProject;
-        issueListController.username = username;
         
         JCreateIssueViewController *createIssueController = [issueTabBarController.viewControllers objectAtIndex:1];
-        createIssueController.authValue = authValue;
         createIssueController.project = _selectedProject;
     }
 }

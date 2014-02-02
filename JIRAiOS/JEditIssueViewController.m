@@ -10,19 +10,19 @@
 
 @interface JEditIssueViewController (){
     JStringFormatUtility *stringFormatUtility;
+    JNetworkUtility *networkUtility;
 }
 
 @end
 
 @implementation JEditIssueViewController
 @synthesize issue;
-@synthesize authValue;
 @synthesize project;
-@synthesize username;
 
 -(void)viewDidLoad
 {
     stringFormatUtility = [[JStringFormatUtility alloc]init];
+    networkUtility = [JNetworkUtility getNetworkUtility];
     [self populateFields];
     [super viewDidLoad];
 }
@@ -61,13 +61,11 @@
         JIssueDescriptionViewController *descriptionViewController = segue.destinationViewController;
         [self createIssueWithFieldsFromPage];
         descriptionViewController.issue = issue;
-        descriptionViewController.authValue = authValue;
         descriptionViewController.project = project;
         descriptionViewController.callingController = EDIT_ISSUE;
     } else if([segue.identifier isEqualToString:@"moveIssue"]){
         JMoveIssueControllerViewController *moveIssueController = segue.destinationViewController;
         moveIssueController.issue = issue;
-        moveIssueController.authValue = authValue;
     }
 }
 
@@ -110,19 +108,13 @@
 
 - (IBAction)deleteIssue:(UIButton *)sender {
     UIActionSheet *deleteConfirmation = [[UIActionSheet alloc] initWithTitle:@"Delete Issue?" delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:@"YES" otherButtonTitles: nil];
-    
     [deleteConfirmation showInView:self.view];
 }
 
 - (IBAction)assignIssueToMe:(UIButton *)sender {
-    NSString *updateJsonString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/assignee", issue.issueId];
-    NSURL *url = [NSURL URLWithString:updateJsonString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-    [request setHTTPMethod:@"PUT"];
-    NSString *jsonBodyString = [NSString stringWithFormat:@"{\"name\": \"%@\"}", username];
-    [request setHTTPBody: [jsonBodyString dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/assignee", issue.issueId];
+    NSString *httpBody = [NSString stringWithFormat:@"{\"name\": \"%@\"}", networkUtility.currentUser];
+    NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:PUT HTTPBody:httpBody];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //Return to main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -139,12 +131,8 @@
 
 -(void)requestIssue
 {
-    NSString *updateJsonString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@", issue.issueId];
-    NSURL *url = [NSURL URLWithString:updateJsonString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-    [request setHTTPMethod:@"GET"];
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@", issue.issueId];
+    NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:GET];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         NSError *jsonError;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
@@ -159,12 +147,8 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0){
-        NSString *updateJsonString = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@", issue.issueId];
-        NSURL *url = [NSURL URLWithString:updateJsonString];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type" ];
-        [request setHTTPMethod:@"DELETE"];
-        [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+        NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@", issue.issueId];
+        NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:DELETE];
         [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
             //Return to main thread
             dispatch_async(dispatch_get_main_queue(), ^(void){
