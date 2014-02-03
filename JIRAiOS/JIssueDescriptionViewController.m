@@ -19,6 +19,7 @@
 @synthesize issue;
 @synthesize callingController;
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -51,11 +52,13 @@
 
 -(void)persistNewIssue
 {
+    [JActivityIndicatorUtility startActivityIndicatorInView:self.navigationController.view];
     NSString *httpBody = [NSString stringWithFormat:@"{\"fields\" : {\"project\":{\"key\":\"%@\"}, \"summary\": \"%@\", \"description\":\"%@\", \"issuetype\":{\"name\":\"%@\"}, \"priority\":{\"name\":\"%@\"}}}", _project.projectKey, issue.issueTitle, issue.issueDescription, issue.issueType, issue.issuePriority];
     NSMutableURLRequest *request = [networkUtility createRequestWithURL:@"https://catalystit.atlassian.net/rest/api/2/issue/" HTTPMethod:POST HTTPBody:httpBody];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //Return to main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
+            [JActivityIndicatorUtility stopActivityIndicator];
             UINavigationController *navController = self.navigationController;
             NSArray *navViewControllers = [navController viewControllers];
             UITabBarController *issueTabBarController = navViewControllers[navViewControllers.count-2];
@@ -73,12 +76,14 @@
 
 -(void)updateIssue
 {
+    [JActivityIndicatorUtility startActivityIndicatorInView:self.navigationController.view];
     NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@", issue.issueId];
     NSString *httpBody = [NSString stringWithFormat:@"{\"fields\" : {\"project\":{\"key\":\"%@\"}, \"summary\": \"%@\", \"description\":\"%@\", \"issuetype\":{\"name\":\"%@\"}, \"priority\":{\"name\":\"%@\"}, \"customfield_10004\":%@}}", _project.projectKey, issue.issueTitle, issue.issueDescription, issue.issueType, issue.issuePriority, issue.issueStoryPoints];
     NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:PUT HTTPBody:httpBody];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //Return to main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
+            [JActivityIndicatorUtility stopActivityIndicator];
             UINavigationController *navController = self.navigationController;
             NSArray *navViewControllers = [navController viewControllers];
             UITabBarController *issueTabBarController = navViewControllers[navViewControllers.count-3];

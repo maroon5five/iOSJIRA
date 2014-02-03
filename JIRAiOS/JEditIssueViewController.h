@@ -14,6 +14,7 @@
 #import "JStringFormatUtility.h"
 #import "JMoveIssueControllerViewController.h"
 #import "JNetworkUtility.h"
+#import "JActivityIndicatorUtility.h"
 
 @interface JEditIssueViewController : UIViewController<UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleEditText;

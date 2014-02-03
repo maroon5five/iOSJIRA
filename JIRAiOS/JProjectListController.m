@@ -9,7 +9,6 @@
 #import "JProjectListController.h"
 
 @interface JProjectListController (){
-    UIActivityIndicatorView *activityIndicatorView;
     JNetworkUtility *networkUtility;
 }
 
@@ -27,7 +26,7 @@
 
 -(void)getAllProjects
 {
-    [self startActivityIndicator];
+    [JActivityIndicatorUtility startActivityIndicatorInView:self.navigationController.view];
     NSMutableURLRequest *request = [networkUtility createRequestWithURL:@"https://catalystit.atlassian.net/rest/api/2/project" HTTPMethod:GET];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //parse data here
@@ -43,20 +42,11 @@
             }
             //return to main thread and reload data
             dispatch_async(dispatch_get_main_queue(), ^{
-                [activityIndicatorView removeFromSuperview];
+                [JActivityIndicatorUtility stopActivityIndicator];
                 [[self tableView] reloadData];
             });
         }
     }];
-}
-
--(void)startActivityIndicator
-{
-    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    activityIndicatorView.center = CGPointMake(screenRect.size.width/2, screenRect.size.height/3);
-    [activityIndicatorView startAnimating];
-    [self.view addSubview: activityIndicatorView];
 }
 
 #pragma mark - Table view data source

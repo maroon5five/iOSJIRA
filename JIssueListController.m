@@ -19,7 +19,6 @@
     
     JIssue *selectedIssue;
     
-    UIActivityIndicatorView *activityIndicatorView;
     JNetworkUtility *networkUtility;
 }
 
@@ -111,7 +110,7 @@
 
 - (void)getAllIssuesForProject
 {
-    [self startActivityIndicator];
+    [JActivityIndicatorUtility startActivityIndicatorInView:self.navigationController.view];
     networkUtility = [JNetworkUtility getNetworkUtility];
     NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/search?jql=project=%@&maxResults=5000", _project.projectKey];
     NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:GET];
@@ -124,20 +123,11 @@
             [self handleResponseWithAllIssuesForProject:jsonIssues];
             //return to main thread and reload data
             dispatch_async(dispatch_get_main_queue(), ^{
-                [activityIndicatorView removeFromSuperview];
+                [JActivityIndicatorUtility stopActivityIndicator];
                 [[self tableView] reloadData];
             });
         }
     }];
-}
-
--(void)startActivityIndicator
-{
-    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    activityIndicatorView.center = CGPointMake(screenRect.size.width/2, screenRect.size.height/3);
-    [activityIndicatorView startAnimating];
-    [self.view addSubview: activityIndicatorView];
 }
 
 #pragma mark - Table view data source

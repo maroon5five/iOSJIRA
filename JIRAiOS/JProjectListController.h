@@ -13,11 +13,11 @@
 #import "JNetworkUtility.h"
 #import "JConstants.h"
 #import "JCreateIssueViewController.h"
+#import "JActivityIndicatorUtility.h"
 
 @interface JProjectListController : UITableViewController
 @property(nonatomic) NSMutableArray *projects;
 @property(nonatomic) JProject *selectedProject;
 
 -(void)getAllProjects;
--(void)startActivityIndicator;
 @end

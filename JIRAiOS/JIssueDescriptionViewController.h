@@ -13,6 +13,7 @@
 #import "JStringFormatUtility.h"
 #import "JIssueListController.h"
 #import "JNetworkUtility.h"
+#import "JActivityIndicatorUtility.h"
 
 @interface JIssueDescriptionViewController : UIViewController
 
@@ -23,7 +24,6 @@
 @property(nonatomic) int callingController;
 
 -(void)setUpDescriptionEditTextStyle;
-
 -(IBAction)submitIssue:(UIButton *)sender;
 -(void)persistNewIssue;
 -(void)updateIssue;

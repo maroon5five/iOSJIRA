@@ -10,6 +10,7 @@
 #import "JIssue.h"
 #import "JEditIssueViewController.h"
 #import "JNetworkUtility.h"
+#import "JActivityIndicatorUtility.h"
 
 @interface JMoveIssueControllerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic) JIssue *issue;

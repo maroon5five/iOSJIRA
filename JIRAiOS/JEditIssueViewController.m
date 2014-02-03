@@ -112,6 +112,7 @@
 }
 
 - (IBAction)assignIssueToMe:(UIButton *)sender {
+    [JActivityIndicatorUtility startActivityIndicatorInView:self.navigationController.view];
     NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/assignee", issue.issueId];
     NSString *httpBody = [NSString stringWithFormat:@"{\"name\": \"%@\"}", networkUtility.currentUser];
     NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:PUT HTTPBody:httpBody];
@@ -139,6 +140,7 @@
         NSString *assignee = [[[json objectForKey:@"fields"]objectForKey:@"assignee"] objectForKey:@"displayName"];
         //Return to main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
+            [JActivityIndicatorUtility stopActivityIndicator];
             _assigneeTextView.text = assignee;
         });
     }];
@@ -147,11 +149,13 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0){
+        [JActivityIndicatorUtility startActivityIndicatorInView:self.navigationController.view];
         NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@", issue.issueId];
         NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:DELETE];
         [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
             //Return to main thread
             dispatch_async(dispatch_get_main_queue(), ^(void){
+                [JActivityIndicatorUtility stopActivityIndicator];
                 UINavigationController *navController = self.navigationController;
                 NSArray *navViewControllers = [navController viewControllers];
                 UITabBarController *issueTabBarController = navViewControllers[navViewControllers.count-2];

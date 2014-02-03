@@ -12,6 +12,7 @@
 #import "JEditIssueViewController.h"
 #import "JConstants.h"
 #import "JNetworkUtility.h"
+#import "JActivityIndicatorUtility.h"
 
 
 @interface JIssueListController : UITableViewController
@@ -23,6 +24,5 @@
 - (void)buildIssueAndStoreItInTheProperArray:(NSDictionary *)jsonIssue;
 - (void)handleResponseWithAllIssuesForProject:(NSArray *)jsonIssues;
 - (void)getAllIssuesForProject;
-- (void)startActivityIndicator;
 
 @end

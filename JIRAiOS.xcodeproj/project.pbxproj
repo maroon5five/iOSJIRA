@@ -49,6 +49,8 @@
 		A8AECD961892F57400B86EBD /* JCreateIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD951892F57400B86EBD /* JCreateIssueViewController.m */; };
 		A8AECD991896DB4200B86EBD /* JPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD981896DB4200B86EBD /* JPickerViewController.m */; };
 		B2965699189E1EB900DE7BDC /* JNetworkUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = B2965698189E1EB900DE7BDC /* JNetworkUtility.m */; };
+		B296569C189EF17100DE7BDC /* JActivityIndicatorUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = B296569B189EF17100DE7BDC /* JActivityIndicatorUtility.m */; };
+		B296569F189EFF0000DE7BDC /* JAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B296569E189EFF0000DE7BDC /* JAddCommentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,10 @@
 		A8AECD981896DB4200B86EBD /* JPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPickerViewController.m; path = ../JPickerViewController.m; sourceTree = "<group>"; };
 		B2965697189E1EB900DE7BDC /* JNetworkUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNetworkUtility.h; sourceTree = "<group>"; };
 		B2965698189E1EB900DE7BDC /* JNetworkUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNetworkUtility.m; sourceTree = "<group>"; };
+		B296569A189EF17100DE7BDC /* JActivityIndicatorUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JActivityIndicatorUtility.h; sourceTree = "<group>"; };
+		B296569B189EF17100DE7BDC /* JActivityIndicatorUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JActivityIndicatorUtility.m; sourceTree = "<group>"; };
+		B296569D189EFEFF00DE7BDC /* JAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAddCommentViewController.h; sourceTree = "<group>"; };
+		B296569E189EFF0000DE7BDC /* JAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAddCommentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +211,8 @@
 				A80B85C818981B13009C3381 /* JEditIssueViewController.m */,
 				A80B85D61899D8C8009C3381 /* JMoveIssueControllerViewController.h */,
 				A80B85D71899D8C8009C3381 /* JMoveIssueControllerViewController.m */,
+				B296569D189EFEFF00DE7BDC /* JAddCommentViewController.h */,
+				B296569E189EFF0000DE7BDC /* JAddCommentViewController.m */,
 				A840B0E9188F1E6D00B65198 /* Images.xcassets */,
 				A840B0D5188F1E6D00B65198 /* Supporting Files */,
 			);
@@ -300,6 +308,8 @@
 				A80B85CE1899864F009C3381 /* JStringFormatUtility.m */,
 				B2965697189E1EB900DE7BDC /* JNetworkUtility.h */,
 				B2965698189E1EB900DE7BDC /* JNetworkUtility.m */,
+				B296569A189EF17100DE7BDC /* JActivityIndicatorUtility.h */,
+				B296569B189EF17100DE7BDC /* JActivityIndicatorUtility.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -423,6 +433,8 @@
 				A8AECD801890942E00B86EBD /* JProject.m in Sources */,
 				A80B85CC18986F50009C3381 /* JConstants.m in Sources */,
 				A88D0963189058890012C99F /* JLoginViewController.m in Sources */,
+				B296569C189EF17100DE7BDC /* JActivityIndicatorUtility.m in Sources */,
+				B296569F189EFF0000DE7BDC /* JAddCommentViewController.m in Sources */,
 				A8AECD7D18908BA400B86EBD /* JProjectListController.m in Sources */,
 				A8AECD991896DB4200B86EBD /* JPickerViewController.m in Sources */,
 				A840B0DB188F1E6D00B65198 /* main.m in Sources */,

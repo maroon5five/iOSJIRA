@@ -104,16 +104,11 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZLX-fB-aAr">
-                                <rect key="frame" x="152" y="235" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="JIRA Login" id="TXS-Df-KEh"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="ZLX-fB-aAr" id="uDj-Xy-j9y"/>
                         <outlet property="errorTextView" destination="jxe-RC-U2t" id="ITi-nX-Zdd"/>
                         <outlet property="passwordTextView" destination="Val-8j-QR1" id="80f-26-5lN"/>
                         <outlet property="usernameTextView" destination="dV5-MG-9Be" id="NH1-DT-jEc"/>
@@ -188,8 +183,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Move Issue To:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GsC-aI-oeA">
-                                <rect key="frame" x="103" y="85" width="115" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Available Movements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GsC-aI-oeA">
+                                <rect key="frame" x="78" y="85" width="164" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -395,6 +390,25 @@
             </objects>
             <point key="canvasLocation" x="1193" y="747"/>
         </scene>
+        <!--Add Comment View Controller-->
+        <scene sceneID="h6e-e1-Uoh">
+            <objects>
+                <viewController id="5b2-fO-rDC" customClass="JAddCommentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VW8-b9-QV8"/>
+                        <viewControllerLayoutGuide type="bottom" id="YYa-SG-0hc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="emc-jE-3Ng">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TsF-tJ-Pfo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xYc-pa-G4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2017" y="-914"/>
+        </scene>
         <!--Edit Issue View Controller - Edit Issue-->
         <scene sceneID="3q5-kF-98o">
             <objects>
@@ -464,7 +478,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGh-Gg-BYn">
-                                <rect key="frame" x="103" y="308" width="115" height="30"/>
+                                <rect key="frame" x="103" y="332" width="115" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View Description">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -494,7 +508,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGk-9Q-dAJ">
-                                <rect key="frame" x="23" y="332" width="275" height="109"/>
+                                <rect key="frame" x="20" y="353" width="275" height="109"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -522,6 +536,16 @@
                                 </state>
                                 <connections>
                                     <action selector="assignIssueToMe:" destination="omc-f0-kCE" eventType="touchUpInside" id="knG-yB-LQe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7A-BH-ULP">
+                                <rect key="frame" x="110" y="304" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add Comment">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="5b2-fO-rDC" kind="push" identifier="addComment" id="Fud-BA-isJ"/>
                                 </connections>
                             </button>
                         </subviews>

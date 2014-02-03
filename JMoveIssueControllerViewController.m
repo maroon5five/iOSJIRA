@@ -30,6 +30,7 @@
 
 -(void)getAllAvailableTransitions
 {
+    [JActivityIndicatorUtility startActivityIndicatorInView:self.navigationController.view];
     NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/transitions", issue.issueId];
     NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:GET];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
@@ -41,6 +42,7 @@
             [self handleResponseWithAllTransitions:availableTransitions];
             //return to main thread and reload data
             dispatch_async(dispatch_get_main_queue(), ^{
+                [JActivityIndicatorUtility stopActivityIndicator];
                 [self.issueStatusTable reloadData];
             });
         }
@@ -57,8 +59,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [JActivityIndicatorUtility startActivityIndicatorInView:self.navigationController.view];
     NSString *url = [NSString stringWithFormat:@"https://catalystit.atlassian.net/rest/api/2/issue/%@/transitions", issue.issueId];
-     NSString *httpBody = [NSString stringWithFormat:@"{\"update\": {}, \"fields\": {}, \"transition\": {\"id\": \"%@\" } }", availableMovements[indexPath.row][0]];
+    NSString *httpBody = [NSString stringWithFormat:@"{\"update\": {}, \"fields\": {}, \"transition\": {\"id\": \"%@\" } }", availableMovements[indexPath.row][0]];
     NSMutableURLRequest *request = [networkUtility createRequestWithURL:url HTTPMethod:POST HTTPBody:httpBody];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         //parse data here
@@ -66,6 +69,7 @@
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
         if(json){
             dispatch_async(dispatch_get_main_queue(), ^{
+                [JActivityIndicatorUtility stopActivityIndicator];
                 [self returnToEditPage];
             });
         }

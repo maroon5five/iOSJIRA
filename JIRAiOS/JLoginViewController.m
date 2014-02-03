@@ -22,9 +22,9 @@
 - (IBAction)login:(id)sender {
     _errorTextView.text = @"";
     networkUtility = [JNetworkUtility getNetworkUtility];
+    [JActivityIndicatorUtility startActivityIndicatorInView:self.navigationController.view];
     NSString *username = _usernameTextView.text;
     NSString *password = _passwordTextView.text;
-    [self.activityIndicatorView startAnimating];
     [networkUtility setUpAuthenticationValueWithUsername:username Password:password];
     //HTTP request to JIRA for login
     NSString *httpBody = [NSString stringWithFormat:@"{\"username\" : \"%@\", \"password\" : \"%@\"}", username, password];
@@ -35,7 +35,7 @@
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
         //Return to main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [self.activityIndicatorView stopAnimating];
+            [JActivityIndicatorUtility stopActivityIndicator];
             [self handleLoginResponse:json];
         });
     }];
