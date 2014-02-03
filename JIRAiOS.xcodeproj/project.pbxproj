@@ -39,6 +39,7 @@
 		A843EEBD189C1BBD00DB8528 /* Task Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEAF189C1BBD00DB8528 /* Task Icon.jpg */; };
 		A843EEBE189C1BBD00DB8528 /* Trivial Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEB0189C1BBD00DB8528 /* Trivial Icon.jpg */; };
 		A843EEBF189C1BBD00DB8528 /* Unprioritized Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A843EEB1189C1BBD00DB8528 /* Unprioritized Icon.jpg */; };
+		A843EEC218A01B9100DB8528 /* JIssueOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A843EEC118A01B9100DB8528 /* JIssueOptionsViewController.m */; };
 		A88D0963189058890012C99F /* JLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A88D0962189058890012C99F /* JLoginViewController.m */; };
 		A88D096618907A280012C99F /* JEncodeStringBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A88D096518907A280012C99F /* JEncodeStringBase64.m */; };
 		A8AECD7D18908BA400B86EBD /* JProjectListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8AECD7C18908BA400B86EBD /* JProjectListController.m */; };
@@ -105,6 +106,8 @@
 		A843EEAF189C1BBD00DB8528 /* Task Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Task Icon.jpg"; sourceTree = "<group>"; };
 		A843EEB0189C1BBD00DB8528 /* Trivial Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Trivial Icon.jpg"; sourceTree = "<group>"; };
 		A843EEB1189C1BBD00DB8528 /* Unprioritized Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Unprioritized Icon.jpg"; sourceTree = "<group>"; };
+		A843EEC018A01B9100DB8528 /* JIssueOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JIssueOptionsViewController.h; path = ../JIssueOptionsViewController.h; sourceTree = "<group>"; };
+		A843EEC118A01B9100DB8528 /* JIssueOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JIssueOptionsViewController.m; path = ../JIssueOptionsViewController.m; sourceTree = "<group>"; };
 		A88D0961189058890012C99F /* JLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLoginViewController.h; sourceTree = "<group>"; };
 		A88D0962189058890012C99F /* JLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLoginViewController.m; sourceTree = "<group>"; };
 		A88D096418907A280012C99F /* JEncodeStringBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEncodeStringBase64.h; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				A80B85D71899D8C8009C3381 /* JMoveIssueControllerViewController.m */,
 				B296569D189EFEFF00DE7BDC /* JAddCommentViewController.h */,
 				B296569E189EFF0000DE7BDC /* JAddCommentViewController.m */,
+				A843EEC018A01B9100DB8528 /* JIssueOptionsViewController.h */,
+				A843EEC118A01B9100DB8528 /* JIssueOptionsViewController.m */,
 				A840B0E9188F1E6D00B65198 /* Images.xcassets */,
 				A840B0D5188F1E6D00B65198 /* Supporting Files */,
 			);
@@ -431,6 +436,7 @@
 			files = (
 				A88D096618907A280012C99F /* JEncodeStringBase64.m in Sources */,
 				A8AECD801890942E00B86EBD /* JProject.m in Sources */,
+				A843EEC218A01B9100DB8528 /* JIssueOptionsViewController.m in Sources */,
 				A80B85CC18986F50009C3381 /* JConstants.m in Sources */,
 				A88D0963189058890012C99F /* JLoginViewController.m in Sources */,
 				B296569C189EF17100DE7BDC /* JActivityIndicatorUtility.m in Sources */,

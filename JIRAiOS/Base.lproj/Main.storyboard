@@ -66,7 +66,7 @@
                                 <rect key="frame" x="123" y="98" width="150" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Val-8j-QR1">
                                 <rect key="frame" x="123" y="151" width="150" height="30"/>
@@ -390,6 +390,24 @@
             </objects>
             <point key="canvasLocation" x="1193" y="747"/>
         </scene>
+        <!--Issue Options View Controller-->
+        <scene sceneID="NCf-gi-juo">
+            <objects>
+                <viewController id="7vN-Cz-fEL" customClass="JIssueOptionsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z7R-jg-Sig"/>
+                        <viewControllerLayoutGuide type="bottom" id="i7h-Ll-hJn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hG1-b3-mwR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JoR-zq-gjW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1645" y="-968"/>
+        </scene>
         <!--Add Comment View Controller-->
         <scene sceneID="h6e-e1-Uoh">
             <objects>
@@ -407,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYc-pa-G4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="-914"/>
+            <point key="canvasLocation" x="2067" y="-968"/>
         </scene>
         <!--Edit Issue View Controller - Edit Issue-->
         <scene sceneID="3q5-kF-98o">
